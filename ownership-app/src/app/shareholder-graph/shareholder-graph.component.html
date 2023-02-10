@@ -1,0 +1,47 @@
+<div>
+    <ngx-graph
+      class="chart-container"
+      [view]="[1600, 1200]"
+      [showMiniMap]="true"
+      [draggingEnabled]="draggingEnabled"
+      [links]="links"
+      [nodes]="nodes"
+      [curve]="curve"
+    >
+      <ng-template #nodeTemplate let-node>
+        <!-- <div class="node">
+          <span>{{node.label}}</span>
+
+        </div> -->
+        <svg:g class="node">
+          <svg>
+            <!-- <rect [attr.width]="node.dimension.width" [attr.height]="node.dimension.height" [attr.fill]="node.data.color"
+            style="fill:rgb(255, 255, 255);stroke:rgb(197, 197, 197);stroke-width:5" />
+            <text alignment-baseline="central" [attr.x]="10" [attr.y]="node.dimension.height/2"></text> -->
+            <svg:foreignObject [attr.width]="node.dimension.width" [attr.height]="node.dimension.height">
+              <xhtml:div xmlns="http://www.w3.org/1999/xhtml" [ngStyle]="getStyles(node)">
+                <p class="name">{{ node.label }}</p>
+                <p>ID: {{node.data.id}}</p>
+                <p>{{node.data.details.legalFormShareholdingEntity.name}} : {{ node.data.details.legalFormShareholdingEntity.value }}</p>
+                <p>{{node.data.details.registeredCountryShareholdingEntity.name}} : {{ node.data.details.registeredCountryShareholdingEntity.value }}</p>
+              </xhtml:div>
+            </svg:foreignObject>
+          </svg>
+
+        </svg:g>
+      </ng-template>
+
+      <ng-template #linkTemplate let-link>
+        <svg:g class="edge">
+          <svg:path class="line" stroke-width="2" marker-end="url(#arrow)">
+          </svg:path>
+          <svg:text class="edge-label" text-anchor="side">
+            <textPath class="text-path" [attr.href]="'#' + link.id" [style.dominant-baseline]="link.dominantBaseline" startOffset="10%">
+              {{link.label}} ({{link.data.ownershipTypeShareholdingEntity.name}} : {{link.data.ownershipTypeShareholdingEntity.value}})
+            </textPath>
+          </svg:text>
+        </svg:g>
+      </ng-template>
+    </ngx-graph>
+  </div>
+  

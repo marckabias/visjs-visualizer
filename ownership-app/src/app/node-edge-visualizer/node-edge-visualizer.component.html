@@ -1,0 +1,49 @@
+
+<div class="main-container">
+  <div *ngIf="visNetworkData">
+    <div
+      id="networkId1"
+      class="network-canvas"
+      [visNetwork]="visNetwork"
+      [visNetworkData]="visNetworkData"
+      [visNetworkOptions]="visNetworkOptions"
+      (initialized)="networkInitialized()"
+    ></div>
+  </div>
+  
+  <div class="node-details">
+    <div class="node-details__container">
+      <div class="box" *ngIf="nodeInDisplay">
+        <div class="title">
+          {{nodeInDisplay[nodeConfig.title].value}}
+        </div>
+        <div *ngFor="let key of Object.keys(nodeInDisplay)">
+          <div *ngIf="nodeInDisplay[key].name &&  key!==nodeConfig.title" class="not-title">
+            <span class="sub-title">{{nodeInDisplay[key].name}} :</span>  {{processDetailValue(nodeInDisplay[key].name, nodeInDisplay[key].value)}}
+          </div>
+        </div>
+
+        <button class="default-button" mat-button *ngIf="nodeConfig.buttons.generateCdd">
+          <span>Generate CDD</span>
+        </button>
+        <button class="default-button" mat-button *ngIf="nodeConfig.buttons.otherButton">
+          <span>Do Something Else</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="edge-details">
+    <div class="edge-details__container">
+      <div class="box" *ngIf="edgeInDisplay">
+        <p><b>Parent Shareholder</b> : {{edgeInDisplay.parentName}} </p>
+        <p><b>Child Shareholder</b> : {{edgeInDisplay.childName}} </p>
+        <div *ngFor="let key of Object.keys(edgeInDisplay)">
+          <div *ngIf="edgeInDisplay[key].value &&  key!==nodeConfig.title" class="not-title">
+            <span class="sub-title">{{edgeInDisplay[key].name}} :</span> {{processDetailValue(edgeInDisplay[key].name, edgeInDisplay[key].value)}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

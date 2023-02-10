@@ -1,0 +1,27 @@
+.modal-dialog.my-modal {
+	border-radius: 2px;
+	width: 400px;
+}
+
+.my-modal .modal-header {
+	border-bottom: none;
+	padding: 32px 20px 16px 32px;
+}
+
+.my-modal .modal-body {
+	padding: 0 20px 20px 32px;
+	color: #1d1d1d;
+	font-family: "IBM Plex Sans";
+	font-size: 14px;
+	letter-spacing: 0;
+	line-height: 20px;
+}
+
+.my-modal .modal-title.pull-left {
+	color: #1d1d1d;
+	font-family: "IBM Plex Sans";
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 0;
+	line-height: 20px;
+}
